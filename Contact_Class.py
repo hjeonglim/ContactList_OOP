@@ -3,7 +3,7 @@ import csv
 # Create people class
 
 
-class People:
+class Person:
     """ Create People class with three attributes, name, phone_number, and address"""
 
     def __init__(self, name, phone_number, address):
@@ -13,53 +13,49 @@ class People:
         self.address = address
 
     def __str__(self):
+        # return self.name + "'s contact info is" + self.phone_number + " and " + self.address
+        return f'name: {self.name}, phone: {self.phone_number}, address: {self.address}'
 
-        return self.name + "'s phone number and address are " + self.phone_number + self.address
 
 
+# person1 = Person("Charlie BBB", "222-000-0000", "000 EEEE St Sunnyvale CA")
+# print(person1)
+#
+# person2 = Person("Yoonu", "111", "ramona")
+# print(person2)
+#
+# people = []
+# people.append(person1)
+# people.append(person2)
+#
+# print(len(people))
+#
+# for p in people:
+#     print('Hi! ', p)
 
-# open the file & csv.reader
-
-with open("/Users/heejeonglim/PycharmProjects/Contact_Class/contact.csv", "r") as files:
-    reader = csv.reader(files, delimiter=',')
-    header = next(reader, None)
 
 # reformat it into a python object list of lists
 
 
-    def contact_book():
-        contact_list = []
+def contact_book():
+    contact_list = []
 
-        for person in reader:
+    # open the file & csv.reader
+
+    with open("/Users/heejeonglim/PycharmProjects/Contact_Class/contact.csv", "r") as file:
+        reader = csv.reader(file, delimiter=',')
+        next(reader, None)
+
+        for r in reader:
+            print(r)
+            person = Person(r[0], r[1], r[2])
             contact_list.append(person)
 
-        all_names = []
+    return contact_list
 
-        for line in contact_list:
-            all_names.append(line[0])
 
-    # Take an input from the user
-        user_input = ''
-        user_input = input("Who do you want to contact? Please give the full name").title()
+people = contact_book()
 
-        # for user_input in all_names:
-        #     if contact_list[0] == user_input:
-        #         return contact_list[0]
-        #
+for person in people:
+    print(person)
 
-    contact_book()
-
-# # # Write csv file
-# #
-# with open("/Users/heejeonglim/PycharmProjects/Contact_Class/contact.csv", mode="w") as files:
-#     writer = csv.writer(files, delimiter=',')
-#     writer.writerow(['Sebastian Thurn', '555-000-999', '000 Heave Cir. Menlo Park CA'])
-#
-# files.close()
-#
-# with open("/Users/heejeonglim/PycharmProjects/Contact_Class/contact.csv", mode="a") as files:
-#     writer = csv.writer(files, delimiter=',')
-#     writer.writerow(['Sooo Thurn', '111-000-999', '000 Uili Cir. Menlo Park CA'])
-#
-# files.close()
-#
