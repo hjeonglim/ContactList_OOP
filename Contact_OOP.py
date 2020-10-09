@@ -31,9 +31,12 @@ def contact():
 contact_book = contact()
 
 
-def print_contact(ct_list):
+def print_contact(ct_list, print_num=False):
     for i, contact in enumerate(ct_list, 1):
-        print(f'{i}. {contact}')
+        if print_num:
+            print(f'{i}. {contact}')
+        else:
+            print(contact)
 
 
 def command_list():
@@ -41,15 +44,16 @@ def command_list():
         user_input = input("Select command 'l' for list, 'x' for exit, and : 'd' for delete from the list").lower()
 
         if user_input == "l":
-            for contact in contact_book:
-                print(contact)
-        elif user_input == "d":
+            # print_contact(contact_book)
             print_contact(contact_book)
+
+        elif user_input == "d":
+            print_contact(contact_book, print_num=True)
 
             # Ask which contact list to delete
             delete_input = int(input(f"Which one do you want to delete? 1-{len(contact_book)}"))
             contact_book.pop(delete_input-1)
-            print_contact(contact_book)
+            print_contact(contact_book, print_num=True)
 
         elif user_input == "x":
             break
@@ -57,4 +61,9 @@ def command_list():
 
 command_list()
 
+my_list = [Person('A', '123', 'kkk'), Person('B', '456', 'nnn')]
+
+# print_numbered_contact(my_list)
+# print_numbered_contact(contact_book)
+# print_contact2(my_list, print_num=False)
 
