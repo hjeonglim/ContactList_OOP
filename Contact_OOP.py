@@ -61,9 +61,16 @@ def command_list():
 
 command_list()
 
-my_list = [Person('A', '123', 'kkk'), Person('B', '456', 'nnn')]
 
-# print_numbered_contact(my_list)
-# print_numbered_contact(contact_book)
-# print_contact2(my_list, print_num=False)
+class ContactBook:
+    def print(self):
+
+
+    def delete(self):
+
+    def add(self):
+
+    def save(self):
+
+
 
